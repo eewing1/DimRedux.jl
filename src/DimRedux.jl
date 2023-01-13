@@ -94,8 +94,9 @@ end
 function ssrft(a,b)
     """Return ssrft matrix of dimensions axb
        Dimension reduction map"""
-    Π=randspermmat(a)
-    F=
+    Π=randspermmat(N)
+    Π'=randspermat(N)
+       
     fft(matrix)
     #apply fft to identity
     #fft algorithm has been highly optimized
