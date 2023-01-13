@@ -51,13 +51,18 @@ function tropp(t,r,k,s,x...)
     Â=Q*C*P'
 
     #compute best rank r approximation of matrix A
-    C_svd=svd(C)
-    C̃ᵣ=(C_svd.U[:,1:r])*Diagonal(C_svd.S[1:r])*(C_svd.V[:,1:r])'
-
+    C̃ᵣ=lowrankapprox(C,r)
     Ãᵣ=Q*C̃ᵣ*P'
 
     #this matrix is the truncated approximation
 end
+
+function lowrankapprox(C,r)
+    #compute low rank approximation of given matrix and rank
+    C_svd=svd(C)
+    C̃ᵣ=(C_svd.U[:,1:r])*Diagonal(C_svd.S[1:r])*(C_svd.V[:,1:r])'
+end
+
 
 #do not put everything in the same function; write helper functions that do these things for us
 #write separarte function that generates the test matrices: sparse sign, gaussian, scrambled sfrt
