@@ -1,3 +1,9 @@
+"""How to create a function that recursively accepts matrix inputs from the user"""
+
+
+
+
+
 function acceptlist()
     #take sucessive user inputs and store into matrix
     matrix_list=

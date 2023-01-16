@@ -58,58 +58,9 @@ function tropp(t,r,k,s,x...)
 end
 
 function lowrankapprox(C,r)
-    #compute low rank approximation of given matrix and rank
+    """compute rank r approximation of given matrix C"""
     C_svd=svd(C)
     C̃ᵣ=(C_svd.U[:,1:r])*Diagonal(C_svd.S[1:r])*(C_svd.V[:,1:r])'
-end
-
-
-#do not put everything in the same function; write helper functions that do these things for us
-#write separarte function that generates the test matrices: sparse sign, gaussian, scrambled sfrt
-
-function sparsesign(a,b,ζ)
-    """Return sparse sign matrix of dimensions axb
-        Dimension reduction map"""
-    #check zeta parameter
-    #want to build a matrix of size axb
-    #generate upsilon, kxm matrix
-    matrix=Complex.(zeros(a,b))
-    for x=1:b
-        col=Complex.(zeros(a))
-        #pick coordinates, entries of column vector 
-        crds=sample(range(1,a), ζ; replace=false)
-        numbers=exp.((2*im*π).*rand(ζ))
-        #now insert these numbers into each column
-        for z=1:a
-            if z in crds
-                col[z]=pop!(numbers)
-        ``  end
-        end
-        matrix[:,x]=col
-    end
-    return matrix
-end
-
-function gaussian(a,b)
-   """Return gaussian matrix of dimensions axb
-      Dimension reduction map"""
-    return randn(a,b)
-end
-
-function ssrft(a,b)
-    """Return ssrft matrix of dimensions axb
-       Dimension reduction map"""
-    Π=randspermmat(N)
-    Π'=randspermat(N)
-       
-    fft(matrix)
-    #apply fft to identity
-    #fft algorithm has been highly optimized
-end
-
-function randspermmat(n)
-    """Return signed permutation matrix of dimension nxn"""
-    SparseMatrixCSC(n, n,collect(1:n+1), shuffle(1:n), (-1).^rand(Bool,n))
 end
 
 
